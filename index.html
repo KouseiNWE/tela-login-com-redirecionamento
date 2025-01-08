@@ -1,88 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Chapéu de Palha - Carregando</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
+            background-color: #1a1a1a;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            overflow: hidden;
         }
-        h1 {
-            color: #333;
-            text-align: center;
+
+        .loader {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        form {
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffcc00, #ff9900);
+            animation: bounce 0.6s infinite alternate;
         }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
         }
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #007BFF;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
         }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        .title {
+            font-size: 32px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px rgba(255, 204, 0, 0.7); }
+            100% { text-shadow: 0 0 30px rgba(255, 204, 0, 1); }
+        }
+
+        .anime-icon {
+            width: 100px; /* Tamanho do ícone do anime */
+            margin-top: 20px;
+        }
+
+        .instruction {
+            display: none;
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
+            color: #ffffff;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 20px; /* Margem lateral para um pouco de espaçamento */
+            border-radius: 0; /* Sem borda */
         }
-        button:hover {
-            background-color: #0056b3;
+
+        .arrow-icon {
+            width: 40px; /* Tamanho da seta */
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Faça o seu Login</h1>
-    <form id="loginForm">
-        <label for="username">Usuário:</label>
-        <input type="text" id="username" required>
+    <div class="loader">
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="title">Chapéu de Palha</div>
+        <img class="anime-icon" src="one-piece.png" alt="Ícone de Anime">
+    </div>
 
-        <label for="password">Senha:</label>
-        <input type="password" id="password" required>
-
-        <button type="submit">Entrar</button>
-    </form>
+    <div class="instruction" id="instruction">
+        <img class="arrow-icon" src="deslizar.gif" alt="Seta">
+        <span>Deslize da esquerda para a direita para abrir o menu</span>
+    </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (event) => {
-            event.preventDefault();
+        // Substitua o link da imagem pelo seu ícone de anime
+        const animeIcon = document.querySelector('.anime-icon');
+        animeIcon.src = "one-piece.png"; // Ajuste para o nome correto da sua imagem
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // Tempo de carregamento (3 segundos)
+        setTimeout(() => {
+            // Ocultar a tela de carregamento
+            document.querySelector('.loader').style.display = 'none';
+            
+            // Mostrar a instrução
+            const instruction = document.getElementById('instruction');
+            instruction.style.display = 'flex';
 
-            if (username === 'teste10' && password === 'testeteste') {
-                window.location.href = 'https://chapeu-de-palha-oficial.blogspot.com';
-            } else {
-                alert('Usuário ou senha incorretos.');
-            }
-        });
+            // Ocultar a instrução após 3 segundos e redirecionar
+            setTimeout(() => {
+                instruction.style.display = 'none';
+                window.location.href = "https://www.google.com";
+            }, 3000);
+        }, 3000);
     </script>
 </body>
 </html>
